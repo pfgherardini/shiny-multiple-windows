@@ -30,10 +30,12 @@ function plot_receive(ev)
 
 
 
-
+//Watch for modifications to the local storage and load the plot from it
 window.addEventListener("storage", function(ev) {plot_receive(ev);}); 
 
 document.addEventListener("DOMNodeInserted", function(e) {
+    //This event is fired when shiny updates the plot. Listen for it
+    //and call plot_send which will store the image in the local storage
     if(e.target && e.target.parentNode.id == "plot") {
         plot_send();
 	}
